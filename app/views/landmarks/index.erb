@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Index</title>
+	</head>
+	<body>
+		<% Landmark.all.each do |landmark| %>
+		<p>
+				Landmark Name: <%= landmark.name%> Landmark completed: <%= landmark.year_completed %>
+				<a href="/landmarks/<%= landmark.id %>"><button>Show</button></a>
+		</p>
+			<% end %>
+			<br>
+			<p><a href="/exit">Exit</a></p>
+	</body>
+</html>

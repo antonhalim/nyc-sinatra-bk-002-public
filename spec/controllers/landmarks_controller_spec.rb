@@ -10,7 +10,9 @@ describe LandmarksController do
   end
 
   it "allows you to create a new landmark" do
-    pending "write your own spec!"
+    landmark = Landmark.create(name: "Chrysler Building", year_completed: 1930)
+    expect(Landmark.find(landmark.id)).to eq(landmark)
+    expect(landmark.year_completed).to eq(1930)
   end
 
   it "allows you to list all landmarks" do
@@ -25,6 +27,9 @@ describe LandmarksController do
   end
 
   it "allows you to edit a single landmark" do
-    pending "write your own spec!"
+    post "/edit/#{Landmark.first.id}", {'landmark[name]' => 'Brooklyn Bridge', 'landmark[year_completed]' => 1950}
+    follow_redirect!
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include("Brooklyn Bridge")
   end
 end
